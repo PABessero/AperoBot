@@ -1,0 +1,8 @@
+{
+  "name": "apero_bot",
+  "version": "1.0.0",
+  "dependencies": {
+    "discord.js": "^14.11.0",
+    "moonlink.js": "^2.2.20"
+  }
+}
