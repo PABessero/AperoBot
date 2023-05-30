@@ -1,5 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
+// TODO: Check why Playlist dont work
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("play")

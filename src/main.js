@@ -108,5 +108,6 @@ client.on("interactionCreate", async (interaction) => {
 });
 
 client.login(token).then(() => {
+  // TODO: Check why application name is null
   console.log(`Bot logged in as ${client.application.name}`);
 });
