@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -48,8 +48,12 @@ module.exports = {
       }
     } else {
       player.queue.add(res.tracks[0]);
+      const songEmbed = new EmbedBuilder().setTitle("Added").addFields({
+        name: res.tracks[0].title,
+        value: res.tracks[0].author,
+      });
       interaction.reply({
-        content: `${res.tracks[0].title} was added to the waiting list`,
+        embeds: [songEmbed],
       });
     }
     if (!player.playing) await player.play();

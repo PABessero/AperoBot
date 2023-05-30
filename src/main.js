@@ -1,4 +1,9 @@
-const { Client, Collection, GatewayIntentBits } = require("discord.js"); //importing discord.js library
+const {
+  Client,
+  Collection,
+  GatewayIntentBits,
+  EmbedBuilder,
+} = require("discord.js"); //importing discord.js library
 const { MoonlinkManager } = require("moonlink.js");
 const path = require("path"); // importing moonlink.js package
 const fs = require("node:fs");
@@ -58,19 +63,14 @@ client.moon.on("nodeCreate", (node) => {
   console.log(`${node.host} was connected`);
 }); //emit to the console the node was connected to
 client.moon.on("trackStart", async (player, track) => {
+  const songEmbed = new EmbedBuilder().setTitle("Now Playing").addFields({
+    name: track.title,
+    value: track.author,
+  });
   if (track.artworkUrl) {
-    client.channels.cache.get(player.textChannel).send(track.artworkUrl);
-  } else {
-    client.channels.cache.get(player.textChannel).send("No Artwork");
+    songEmbed.setImage(track.artworkUrl);
   }
-  client.channels.cache
-    .get(player.textChannel)
-    .send(`${track.title} is playing now`); //when the player starts it will send a message to the channel where the command was executed
-});
-client.moon.on("trackEnd", async (player, track) => {
-  client.channels.cache
-    .get(player.textChannel)
-    .send(`track ${track.title} is over`); //when the player starts it will send a message to the channel where the command was executed
+  client.channels.cache.get(player.textChannel).send({ embeds: [songEmbed] }); //when the player starts it will send a message to the channel where the command was executed
 });
 
 client.on("ready", () => {
