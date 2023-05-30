@@ -6,6 +6,12 @@ module.exports = {
     .setDescription("Lists the queue"),
   async execute(interaction) {
     let player = interaction.client.moon.players.get(interaction.guild.id);
+    if (!player) {
+      return interaction.reply({
+        content: "Bot is not playing",
+        ephemeral: true,
+      });
+    }
     if (!player.connected) {
       return interaction.reply({
         content: "Bot is not playing",
