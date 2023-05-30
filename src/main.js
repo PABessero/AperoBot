@@ -1,7 +1,6 @@
 const {
   Client,
   Collection,
-  Events,
   GatewayIntentBits
 } = require('discord.js') //importing discord.js library
 const {
@@ -59,7 +58,7 @@ client.moon.on('trackStart', async(player, track) => {
   client.channels.cache.get(player.textChannel).send(`${track.title} is playing now`) //when the player starts it will send a message to the channel where the command was executed
 })
 client.moon.on('trackEnd', async(player, track) => {
-  client.channels.cache.get(player.textChannel).send(`track is over`) //when the player starts it will send a message to the channel where the command was executed
+  client.channels.cache.get(player.textChannel).send(`track ${track.title} is over`) //when the player starts it will send a message to the channel where the command was executed
 })
 
 client.on('ready', () => {
