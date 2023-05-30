@@ -58,6 +58,11 @@ client.moon.on("nodeCreate", (node) => {
   console.log(`${node.host} was connected`);
 }); //emit to the console the node was connected to
 client.moon.on("trackStart", async (player, track) => {
+  if (track.artworkUrl) {
+    client.channels.cache.get(player.textChannel).send(track.artworkUrl);
+  } else {
+    client.channels.cache.get(player.textChannel).send("No Artwork");
+  }
   client.channels.cache
     .get(player.textChannel)
     .send(`${track.title} is playing now`); //when the player starts it will send a message to the channel where the command was executed
