@@ -9,6 +9,8 @@ const {
 } = require('moonlink.js')
 const path = require("path"); // importing moonlink.js package
 const fs = require("node:fs")
+const { token } = require('./config.json');
+
 
 
 const client = new Client({
@@ -88,4 +90,4 @@ client.on('interactionCreate', async(interaction) => {
   }
 })
 
-client.login("MTExMjgyNDA2NjM2MjA2OTA1Mw.GnB7po.lE8wmOn7DZnS6Nzq_1CMpT9wkVzJeGzC_5G5QI")
+client.login(token).then(() => {console.log(`Bot logged in as ${client.application.name}`)})

@@ -3,7 +3,7 @@ const {SlashCommandBuilder} = require('discord.js')
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('play')
-        .setDescription('Test')
+        .setDescription('Add a song to the queue')
         .addStringOption(option => option.setName('query').setDescription('Song Name or Link').setRequired(true)),
     async execute(interaction) {
         if (!interaction.member.voice.channel) return interaction.reply({
@@ -42,7 +42,7 @@ module.exports = {
   } else {
     player.queue.add(res.tracks[0])
     interaction.reply({
-      content: `${res.tracks[0].name} was added to the waiting list`
+      content: `${res.tracks[0].title} was added to the waiting list`
     })
   }
   if (!player.playing) await player.play()
