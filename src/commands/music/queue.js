@@ -24,6 +24,13 @@ module.exports = {
         ephemeral: true,
       });
     }
+
+    if (player.queue.size === BigInt(0)) {
+      return interaction.reply({
+        content: "Queue is empty",
+        ephemeral: true,
+      });
+    }
     const queue = player.queue.all;
     let page = 0;
     let maxPage = Math.ceil(queue.length / 10);
