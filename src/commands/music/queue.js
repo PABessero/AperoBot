@@ -80,6 +80,16 @@ module.exports = {
     for (const part of queuePart) {
       queueEmbed.addFields({ name: part.title, value: part.author });
     }
+
+    if (maxPage === 0) {
+      const response = await interaction.reply({
+        embeds: [
+          new EmbedBuilder()
+            .setTitle("Queue (0/0)")
+            .setDescription(`Currently playing: **${player.current.title}**`),
+        ],
+      });
+    }
     const response = await interaction.reply({
       embeds: [queueEmbed],
       components: [row],
@@ -121,6 +131,11 @@ module.exports = {
         queueEmbed.addFields({ name: part.title, value: part.author });
       }
       await response.edit({
+        embeds: [queueEmbed],
+        components: [row],
+      });
+
+      await collector.editReply({
         embeds: [queueEmbed],
         components: [row],
       });
