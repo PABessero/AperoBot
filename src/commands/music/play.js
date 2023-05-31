@@ -50,13 +50,15 @@ module.exports = {
       }
     } else {
       player.queue.add(res.tracks[0]);
-      const songEmbed = new EmbedBuilder().setTitle("Added").addFields({
-        name: res.tracks[0].title,
-        value: res.tracks[0].author,
-      });
-      interaction.reply({
-        embeds: [songEmbed],
-      });
+      if (player.playing) {
+        const songEmbed = new EmbedBuilder().setTitle("Added").addFields({
+          name: res.tracks[0].title,
+          value: res.tracks[0].author,
+        });
+        interaction.reply({
+          embeds: [songEmbed],
+        });
+      }
     }
     if (!player.playing) await player.play();
   },
