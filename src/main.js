@@ -73,6 +73,10 @@ client.moon.on("trackStart", async (player, track) => {
   client.channels.cache.get(player.textChannel).send({ embeds: [songEmbed] }); //when the player starts it will send a message to the channel where the command was executed
 });
 
+client.moon.on("queueEnd", (player, track) => {
+  player.disconnect();
+});
+
 client.on("ready", () => {
   client.moon.init(client.user.id); //initializing the package
 });
