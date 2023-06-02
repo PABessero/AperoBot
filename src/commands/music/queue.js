@@ -82,7 +82,7 @@ module.exports = {
     }
 
     if (maxPage === 0) {
-      const response = await interaction.reply({
+      await interaction.reply({
         embeds: [
           new EmbedBuilder()
             .setTitle("Queue (0/0)")
