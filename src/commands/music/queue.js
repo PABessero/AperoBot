@@ -101,7 +101,6 @@ module.exports = {
     });
 
     collector.on("collect", async (i) => {
-      console.log(i);
       const event = i.customId;
       switch (event) {
         case "firstPage":
@@ -135,10 +134,10 @@ module.exports = {
         components: [row],
       });
 
-      await collector.editReply({
-        embeds: [queueEmbed],
-        components: [row],
-      });
+      // await collector.editReply({
+      //   embeds: [queueEmbed],
+      //   components: [row],
+      // });
     });
   },
 };

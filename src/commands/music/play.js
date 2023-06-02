@@ -15,7 +15,7 @@ module.exports = {
   async execute(interaction) {
     if (!interaction.member.voice.channel)
       return interaction.reply({
-        content: `you are not on a voice channel`,
+        content: `you are not in a voice channel`,
         ephemeral: true,
       });
     let query = interaction.options.getString("query");
